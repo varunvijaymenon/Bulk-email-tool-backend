@@ -7,8 +7,12 @@ const dotenv = require('dotenv')
 dotenv.config();
 
 app.use(express.json())
-app.use(cors())
-
+app.UseCors(x => x
+  .AllowAnyMethod()
+  .AllowAnyHeader()
+  .SetIsOriginAllowed(origin => true) // allow any origin
+  .AllowCredentials()); // allow credentials
+  
 const port = 4000
 
 
