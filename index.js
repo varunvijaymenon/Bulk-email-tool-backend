@@ -3,24 +3,24 @@ const app = express()
 var cors = require('cors')
 const nodemailer = require('nodemailer');
 
+const dotenv = require('dotenv')
+dotenv.config();
+
 app.use(express.json())
 app.use(cors())
 
 const port = 4000
 
-EMAIL_ID = "varunvijaymenon@gmail.com"
-CLIENT_ID = "357815015826-ska31tqm2k8hj6gv4r2e7dtf1q5dmdda.apps.googleusercontent.com"
-CLIENT_SECRET = "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"
-REFRESH_TOKEN = "1//040Dsn8UGLwTcCgYIARAAGAQSNwF-L9IrazZP2fSc-8eC2txK-P5A98p69BPVoOwv7ULCYejs9xh4oG8ek61wa4_IDSHZqqPNX9k"
+
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         type: 'OAuth2',
-        user: EMAIL_ID,
-        clientId: CLIENT_ID,
-        clientSecret: CLIENT_SECRET,
-        refreshToken: REFRESH_TOKEN
+        user: process.env.EMAIL_ID,
+        clientId: process.env.CLIENT_ID,
+        clientSecret:  process.env.CLIENT_SECRET,
+        refreshToken:  process.env.REFRESH_TOKEN
       }
   });
 
