@@ -13,7 +13,7 @@ app.UseCors(x => x
   .SetIsOriginAllowed(origin => true) // allow any origin
   .AllowCredentials()); // allow credentials
   
-const port = 4000
+const port = process.env.PORT || 80
 
 
 
