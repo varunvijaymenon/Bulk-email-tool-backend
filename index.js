@@ -7,11 +7,7 @@ const dotenv = require('dotenv')
 dotenv.config();
 
 app.use(express.json())
-app.UseCors(x => x
-  .AllowAnyMethod()
-  .AllowAnyHeader()
-  .SetIsOriginAllowed(origin => true) // allow any origin
-  .AllowCredentials()); // allow credentials
+app.use(cors()) // allow credentials
   
 const port = process.env.PORT || 80
 
@@ -28,7 +24,6 @@ const transporter = nodemailer.createTransport({
       }
   });
 
-
 app.post('/send', function (req, res) {  
     // Prepare output in JSON format  
     
@@ -41,7 +36,7 @@ app.post('/send', function (req, res) {
     const mailConfigurations = {
   
         // It should be a string of sender email
-        from: EMAIL_ID,
+        from: process.env.EMAIL_ID,
           
         // Comma Separated list of mails
         to: to_address,
